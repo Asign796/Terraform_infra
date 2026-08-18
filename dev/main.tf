@@ -38,7 +38,7 @@ module "create_appgw_public_ip" {
 }
 
 module "create_appgw" {
-  source = "../module/azurerm_applicationgateway"
-  appgw = var.root_APPGW
+  source     = "../module/azurerm_applicationgateway"
+  appgw      = var.root_APPGW
   depends_on = [module.create_network]
 }

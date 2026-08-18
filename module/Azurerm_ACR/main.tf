@@ -3,13 +3,13 @@ resource "azurerm_container_registry" "acr" {
   for_each = var.ACR
 
 
-  name                = each.value.name
+  name = each.value.name
 
-  location            = each.value.location
+  location = each.value.location
 
   resource_group_name = each.value.resource_group_name
 
-  sku                 = each.value.sku
+  sku = each.value.sku
 
   admin_enabled = false
 }

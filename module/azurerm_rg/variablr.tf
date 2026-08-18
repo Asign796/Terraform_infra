@@ -1,3 +1,3 @@
 variable "child_rg" {
-      
+
 }

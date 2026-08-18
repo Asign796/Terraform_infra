@@ -1,1 +1,1 @@
-variable "AKS"{}   
+variable "AKS" {}   

@@ -1,5 +1,5 @@
 resource "azurerm_kubernetes_cluster" "aks" {
-  for_each = var.AKS
+  for_each            = var.AKS
   name                = each.value.aks_name
   location            = each.value.location
   resource_group_name = each.value.resource_group_name
@@ -27,8 +27,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   node_provisioning_profile {
-  mode = "Auto"
-}
+    mode = "Auto"
+  }
 
 
 }
