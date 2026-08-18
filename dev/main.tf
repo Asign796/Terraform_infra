@@ -40,6 +40,6 @@ module "create_acr" {
 module "create_appgw" {
   source     = "../module/azurerm_applicationgateway"
   appgw      = var.root_APPGW
-  ipvar = var.root_publicip
+  ipvar      = var.root_publicip
   depends_on = [module.create_network]
 }
