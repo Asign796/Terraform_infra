@@ -41,7 +41,8 @@ module "create_appgw" {
 }
 
 module "create_appgw_public_ip" {
+  depends_on = [var.root_network]
   source     = "../module/Azurerm_Public_ip"
   appgw      = var.root_publicip
-  depends_on = [var.root_network]
+
 }
