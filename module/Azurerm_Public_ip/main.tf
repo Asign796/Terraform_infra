@@ -7,3 +7,4 @@ resource "azurerm_public_ip" "appgw_pip" {
   allocation_method   = "Static"
   sku                 = "Standard"
 }
+

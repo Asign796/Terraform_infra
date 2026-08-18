@@ -6,12 +6,12 @@ data "azurerm_subnet" "appgw" {
   resource_group_name  = each.value.resource_group_name
 }
 
-data "azurerm_public_ip" "appgw_pip" {
-  for_each = var.appgw
+# data "azurerm_public_ip" "appgw_pip" {
+#   for_each = var.appgw
 
-  name                = "dev-appgw-pip"
-  resource_group_name = each.value.resource_group_name
-}
+#   name                = "dev-appgw-pip"
+#   resource_group_name = each.value.resource_group_name
+# }
 resource "azurerm_application_gateway" "appgw" {
   for_each = var.appgw
 
