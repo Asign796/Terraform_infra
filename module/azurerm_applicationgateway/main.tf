@@ -50,7 +50,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   frontend_ip_configuration {
     name                 = "public-frontend"
-    public_ip_address_id = azurerm_public_ip.appgw_pip[each.value.public_ip_key].id
+    public_ip_address_id = azurerm_public_ip.appgw_pip[each.key].id
   }
 
   backend_address_pool {
