@@ -20,8 +20,8 @@ permissions:
   contents: read
 
 env:
-  TF_WORKING_DIR: environment
-  TF_VARS_FILE: dev/terraform.tfvars
+  TF_WORKING_DIR: PROJECTFITCART/env/dev
+  TF_VARS_FILE: terraform.tfvars
 
 jobs:
 
