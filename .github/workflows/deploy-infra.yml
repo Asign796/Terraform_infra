@@ -1,19 +1,22 @@
-
 name: Terraform Deploy
+
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+
   push:
     branches:
       - main
     paths:
-      - 'environment/**'
+      - 'dev/**'
+      - 'module/**'
       - '.github/workflows/deploy-infra.yml'
 
   pull_request:
     branches:
       - main
     paths:
-      - 'environment/**'
+      - 'dev/**'
+      - 'module/**'
       - '.github/workflows/deploy-infra.yml'
 
 permissions:
@@ -28,6 +31,7 @@ jobs:
   # ==================================================
   # 1. Terraform Scan / Validation / Plan
   # ==================================================
+
   terraform-plan:
     name: Terraform Scan & Plan
     runs-on: ubuntu-latest
@@ -71,12 +75,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: terraform-plan
-          path: environment/tfplan
+          path: dev/tfplan
           retention-days: 1
+
+
   # ==================================================
   # 2. Terraform Apply
   # ==================================================
-  
+
   terraform-apply:
     name: Terraform Apply
     runs-on: ubuntu-latest
@@ -87,9 +93,9 @@ jobs:
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main'
 
-    # Manual approval
     environment:
       name: production
+
     steps:
 
       - name: Checkout repository
@@ -114,7 +120,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan
-          path: environment
+          path: dev
+
+      - name: Check Terraform Plan
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: ls -la
 
       - name: Terraform Apply
         working-directory: ${{ env.TF_WORKING_DIR }}
