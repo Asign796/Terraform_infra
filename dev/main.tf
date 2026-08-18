@@ -30,15 +30,16 @@ module "create_acr" {
 
 }
 
-module "create_appgw_public_ip" {
-  depends_on = [var.root_network]
-  source     = "../module/Azurerm_Public_ip"
-  appgw      = var.root_publicip
+# module "create_appgw_public_ip" {
+#   depends_on = [var.root_network]
+#   source     = "../module/Azurerm_Public_ip"
+#   appgw      = var.root_publicip
 
-}
+# }
 
 module "create_appgw" {
   source     = "../module/azurerm_applicationgateway"
   appgw      = var.root_APPGW
+  ipvar = var.root_publicip
   depends_on = [module.create_network]
 }
